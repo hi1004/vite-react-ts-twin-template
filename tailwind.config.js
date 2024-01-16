@@ -8,19 +8,28 @@ export default {
   theme: {
     extend: {
       spacing: {
-        ...range(1, 1000).reduce((acc, px) => {
+        ...range(1, 100).reduce((acc, px) => {
           acc[`${px}pxr`] = pxToRem(px)
           return acc
         }, {}),
       },
       fontSize: {
-        ...range(1, 1000).reduce((acc, px) => {
+        ...range(1, 100).reduce((acc, px) => {
           acc[`${px}pxr`] = pxToRem(px)
           return acc
         }, {}),
       },
       colors: {
-        'regal-blue': '#243c5a',
+        redColor: '#F44336',
+        blueColor: '#2196F3',
+        greenColor: '#4CAf50',
+        blackColor: '#212121',
+        grayColor: '#E2E2E2',
+      },
+
+      zIndex: {
+        dimmed: 10,
+        alert: 11,
       },
     },
   },

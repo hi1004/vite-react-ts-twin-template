@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react-swc'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import macrosPlugin from 'vite-plugin-babel-macros'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -9,6 +10,10 @@ export default defineConfig({
     macrosPlugin(),
     react({ jsxImportSource: '@emotion/react' }),
     tsconfigPaths(),
+    visualizer({
+      open: true,
+      brotliSize: true,
+    }),
   ],
   cacheDir: './.vite',
 })
