@@ -2,7 +2,7 @@ import Flex from '@/components/shared/Flex'
 import Skeleton from '@/components/shared/Skeleton'
 import Spacing from '@/components/shared/Spacing'
 import Text from '@/components/shared/Text'
-import tw from 'twin.macro'
+import tw, { TwStyle } from 'twin.macro'
 
 interface ListRowProps {
   left?: React.ReactNode
@@ -12,6 +12,7 @@ interface ListRowProps {
   onClick?: () => void
   hoverEffect?: boolean
   as?: 'div' | 'li'
+  style?: TwStyle
 }
 
 const ListRow = ({
@@ -22,6 +23,7 @@ const ListRow = ({
   onClick,
   as = 'li',
   hoverEffect = false,
+  style,
 }: ListRowProps) => {
   return (
     <Flex
@@ -31,11 +33,12 @@ const ListRow = ({
       css={[
         listRowContainerStyles,
         hoverEffect && tw`transition cursor-pointer hover:bg-slate-100 `,
+        style,
       ]}
     >
-      <Flex css={listRowLeftStyles}>{left}</Flex>
+      {left && <Flex css={listRowLeftStyles}>{left}</Flex>}
       <Flex css={listRowContentStyles}>{contents}</Flex>
-      <Flex css={listRowRightStyles}>{right}</Flex>
+      {right && <Flex css={listRowRightStyles}>{right}</Flex>}
       {withArrow && <RightArrowIcon />}
     </Flex>
   )
@@ -65,7 +68,7 @@ const ListRowSkeleton = () => {
     <Flex as="li" align="center" css={listRowContainerStyles}>
       <Flex css={listRowLeftStyles} />
       <Flex css={listRowContentStyles}>
-        <ListRow.Text
+        <ListRow.Texts
           title={
             <>
               <Skeleton width={67} height={23} />
@@ -73,7 +76,7 @@ const ListRowSkeleton = () => {
             </>
           }
           subTitle={
-            <ListRow.Text title={<Skeleton width={80} height={20} />} />
+            <ListRow.Texts title={<Skeleton width={80} height={20} />} />
           }
         />
       </Flex>
@@ -83,7 +86,7 @@ const ListRowSkeleton = () => {
   )
 }
 
-ListRow.Text = ListRowTexts
+ListRow.Texts = ListRowTexts
 ListRow.Skeleton = ListRowSkeleton
 const RightArrowIcon = () => {
   return (

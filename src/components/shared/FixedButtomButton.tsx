@@ -14,7 +14,7 @@ const FixedButtomButton = ({
   onClick,
   disabled,
 }: FixedButtomButtonProps) => {
-  const $rootPortal = document.getElementById('root-portal') as HTMLElement
+  const $rootPortal = document.getElementById('root-portal')!
   return createPortal(
     <Container>
       <motion.div
